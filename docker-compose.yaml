@@ -1,0 +1,23 @@
+version: '3'
+services:
+  keycloak:
+    image: jboss/keycloak:4.4.0.Final
+    ports:
+    - 8080:8080
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_VENDOR=h2
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - CLIENT_SECRET=ffc3ac89-7755-48d8-bcff-0f31a50bdd88
+      - MODE=client
+  server:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      environment:
+      - MODE=server
