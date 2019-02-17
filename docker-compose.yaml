@@ -15,6 +15,8 @@ services:
     environment:
       - CLIENT_SECRET=ffc3ac89-7755-48d8-bcff-0f31a50bdd88
       - MODE=client
+    links:
+      - server
   server:
       build:
         context: .
